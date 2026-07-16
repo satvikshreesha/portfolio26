@@ -1,0 +1,17 @@
+---
+description: Portfolio project goals, positioning, and constraints — read AGENTS.md first
+alwaysApply: true
+---
+
+# Portfolio agent context
+
+Before planning, designing, or implementing anything in this repo:
+
+1. **Read `AGENTS.md` at the project root** — it is the source of truth for Satvik's goals, positioning, taste, content inventory, and hard constraints.
+2. **Do not replicate** the old site at satvikshreesha.com (structure or Framer patterns). Reuse factual content only.
+3. **Optimize for** a dark dev-tool aesthetic and design-engineering credibility (Cursor, Vercel, Cognition).
+4. **Databricks:** tease role only — no case study or internal work.
+5. **Avoid AI slop** — no generic hero copy, purple gradients, or template layouts.
+6. **Keep diffs scoped.** Propose; don't expand scope (CMS, auth, blog) unless asked.
+
+When unsure about IA or visual direction, propose 2–3 options with tradeoffs instead of assuming.
