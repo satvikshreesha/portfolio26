@@ -67,7 +67,15 @@ export function CaseStudySection({ caseStudy, metrics }: CaseStudySectionProps) 
           }}
           width={57}
         />
-        <div style={eyebrowStyle}>{caseStudy.company}</div>
+        <a
+          className="dashed-hover-link"
+          href={caseStudy.companyUrl}
+          rel="noreferrer"
+          style={eyebrowStyle}
+          target="_blank"
+        >
+          {caseStudy.company}
+        </a>
         <div style={{ ...eyebrowStyle, color: "var(--text-nav)" }}>| {caseStudy.year}</div>
       </div>
       <div style={bodyStyle}>{caseStudy.description}</div>

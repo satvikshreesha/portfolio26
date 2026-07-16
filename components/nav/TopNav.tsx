@@ -106,9 +106,34 @@ function getInnerCapsuleStyle(metrics: TopNavMetrics) {
   } satisfies CSSProperties;
 }
 
+function usePacificTime() {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const format = () => {
+      const formatted = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/Los_Angeles",
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+      }).format(new Date());
+
+      setTime(`${formatted} PST`);
+    };
+
+    format();
+    const intervalId = window.setInterval(format, 30_000);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
+
+  return time;
+}
+
 export function TopNav({ activeHighlightMotion, metrics, svkHomeMark }: TopNavProps) {
   const pathname = usePathname();
   const [pendingHref, setPendingHref] = useState<string | null>(null);
+  const pacificTime = usePacificTime();
   const shouldReduceMotion = useReducedMotion();
   const activeHref = pendingHref ?? pathname;
   const navLinkStyle = getNavLinkStyle(metrics);
@@ -278,6 +303,10 @@ export function TopNav({ activeHighlightMotion, metrics, svkHomeMark }: TopNavPr
         }}
       >
         <div style={navLinkStyle}>SF/Seattle</div>
+        <time dateTime={pacificTime} style={navLinkStyle}>
+          {pacificTime}
+        </time>
+        {/* TLDR capsule — re-enable later
         <div style={raisedShellStyle}>
           <div style={{ ...innerCapsuleStyle, gap: metrics.tldrGap }}>
             <a href="#" style={{ ...getNavItemTextStyle(metrics), textDecoration: "none" }}>
@@ -285,6 +314,7 @@ export function TopNav({ activeHighlightMotion, metrics, svkHomeMark }: TopNavPr
             </a>
           </div>
         </div>
+        */}
       </div>
     </nav>
   );

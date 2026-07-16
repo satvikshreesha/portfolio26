@@ -5,6 +5,7 @@ export type CaseStudyProject = {
 
 export type CaseStudy = {
   company: string;
+  companyUrl: string;
   year: string;
   description: string;
   logoSrc: string;
@@ -24,8 +25,9 @@ export function getCaseStudyCoverSrc(caseStudy: CaseStudy, project: CaseStudyPro
 export const caseStudies: CaseStudy[] = [
   {
     company: "Databricks",
+    companyUrl: "https://www.databricks.com/",
     year: "2026",
-    description: "Product Design Intern working on growing activation and retention in Genie One-- the all purpose knowledge tool.",
+    description: "Product Design Intern working on growing activation and retention in Genie One (AI Knowledge Coworker)",
     logoSrc: "/company-logos/databricks.png",
     slug: "databricks",
     projects: [
@@ -45,6 +47,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     company: "Observe.AI",
+    companyUrl: "https://www.observe.ai/",
     year: "2025",
     description: "Product Design Intern working on the RealTime Agent Assist.",
     logoSrc: "/company-logos/observe-ai.png",
@@ -62,9 +65,10 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     company: "Alignment.io",
+    companyUrl: "https://www.alignment.io/",
     year: "2024",
     description:
-      "Product Design Intern bridging a fragmented quarterly workflow with a unified workspace dashboard.",
+      "Product Design Intern working on centralied dashboards.",
     logoSrc: "/company-logos/alignment.png",
     slug: "alignment",
     projects: [
