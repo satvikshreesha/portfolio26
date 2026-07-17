@@ -132,10 +132,10 @@ function usePacificTime() {
 
 export function TopNav({ activeHighlightMotion, metrics, svkHomeMark }: TopNavProps) {
   const pathname = usePathname();
-  const [pendingHref, setPendingHref] = useState<string | null>(null);
+  const [pendingRoute, setPendingRoute] = useState<{ from: string; href: string } | null>(null);
   const pacificTime = usePacificTime();
   const shouldReduceMotion = useReducedMotion();
-  const activeHref = pendingHref ?? pathname;
+  const activeHref = pendingRoute?.from === pathname ? pendingRoute.href : pathname;
   const navLinkStyle = getNavLinkStyle(metrics);
   const raisedShellStyle = getRaisedShellStyle(metrics);
   const innerCapsuleStyle = getInnerCapsuleStyle(metrics);
@@ -147,10 +147,6 @@ export function TopNav({ activeHighlightMotion, metrics, svkHomeMark }: TopNavPr
     activeHighlightMotion && !shouldReduceMotion
       ? { type: "spring" as const, stiffness: 520, damping: 38, mass: 0.7 }
       : { duration: 0 };
-
-  useEffect(() => {
-    setPendingHref(null);
-  }, [pathname]);
 
   return (
     <nav
@@ -245,7 +241,7 @@ export function TopNav({ activeHighlightMotion, metrics, svkHomeMark }: TopNavPr
                   className="primary-nav-link"
                   href={item.href}
                   key={item.href}
-                  onClick={() => setPendingHref(item.href)}
+                  onClick={() => setPendingRoute({ from: pathname, href: item.href })}
                   style={primaryNavItemStyle}
                 >
                   {active ? (

@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
         pathname: "/company-logos/**",
         search: "",
       },
+      {
+        pathname: "/about/**",
+        search: "",
+      },
     ],
     minimumCacheTTL: 60,
     qualities: [75, 90],

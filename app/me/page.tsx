@@ -1,5 +1,5 @@
-import { SimpleGridPage } from "@/components/pages/SimpleGridPage";
+import { AboutPage } from "@/components/pages/AboutPage";
 
 export default function MePage() {
-  return <SimpleGridPage content="(Coming soon)" title="About Me" />;
+  return <AboutPage />;
 }

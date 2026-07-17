@@ -92,7 +92,7 @@ This file is the human-readable companion to the CSS custom properties in `app/g
 | Off tile 2 | `#16161d` |
 | Stroke | `#1c1c1c` |
 | Fade overlay | Enabled on Work; disabled on Lab and Me so the grid stays visible through the viewport |
-| Persistence | Generated background cells are not persisted to storage; the grid is decorative and route transitions should avoid large JSON writes |
+| Rendering | CSS background layers only; the grid is decorative and should not render per-cell React nodes |
 
 ### Top Nav
 

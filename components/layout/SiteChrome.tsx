@@ -44,6 +44,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
     dials.Padding.outerShell * 2 +
     dials.Padding.navBarY * 2;
   const isWorkRoute = pathname === "/";
+  const isMeRoute = pathname === "/me";
   const viewportRows = Math.max(1, Math.ceil(Math.max(viewportHeight - navHeight, 0) / tileSize));
 
   const navMetrics: TopNavMetrics = {
@@ -85,6 +86,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
     ),
   );
   const gridRows = Math.max(autoRows, viewportRows, GRID_MIN_ROWS);
+  const visibleGridRows = isMeRoute ? viewportRows : gridRows;
 
   useEffect(() => {
     const element = contentRef.current;
@@ -121,16 +123,24 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       <TileGrid
         fadeEnabled={isWorkRoute}
         navHeight={navHeight}
-        rows={gridRows}
+        rows={visibleGridRows}
         tileSize={tileSize}
         viewportWidth={viewportWidth}
       />
       <SiteMetricsProvider metrics={{ caseStudies: caseStudiesMetrics, hero: heroMetrics }}>
-        <main className="relative z-10 pointer-events-none">
+        <main
+          className="relative z-10 pointer-events-none"
+          style={isMeRoute ? { height: "100vh", overflow: "hidden" } : undefined}
+        >
           <div
             className="pointer-events-auto"
             ref={contentRef}
-            style={{ position: "relative", zIndex: 10 }}
+            style={{
+              height: isMeRoute ? "100vh" : undefined,
+              overflow: isMeRoute ? "hidden" : undefined,
+              position: "relative",
+              zIndex: 10,
+            }}
           >
             {children}
           </div>
